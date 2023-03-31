@@ -1,0 +1,12 @@
+<div class="d-flex">
+  <div class="flex-grow-1">
+    <p-menubar [model]="items"></p-menubar>
+  </div>
+  <div class="right-block d-flex align-items-center">
+    <div class="time-block d-flex flex-column align-self-center justify-content-evenly">
+      <div class="d-inline-block text-center">{{time | date: 'HH:mm:ss'}}</div>
+      <p class="timer-day p-0 m-0">{{time | date: 'd MMMM y'}}</p>
+    </div>
+    <p class="user-login p-0 m-0">{{user.login}}</p>
+  </div>
+</div>

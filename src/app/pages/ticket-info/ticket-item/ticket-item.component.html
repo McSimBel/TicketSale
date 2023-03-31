@@ -1,0 +1,13 @@
+<div class="ticket-info-wrap">
+  <div>
+    <div class="ticket-card">
+      <h2 class="text-center">{{ticket?.name}}</h2>
+      <img src="../assets/img/{{ticket?.img}}">
+      <p class="text-center m-0 p-2">{{ticket?.description}}</p>
+      <div class="ticket-card-footer">
+        <button class="btn btn-secondary" routerLink="/tickets/tickets-list">Назад</button>
+        <div class="ticket-price">{{ticket?.price}}</div>
+      </div>
+    </div>
+  </div>
+</div>
