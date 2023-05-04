@@ -1,13 +1,96 @@
 <div class="ticket-info-wrap">
-  <div>
+  <div class="w-50 m-2">
+    <h4 class="text-center mb-4 border-bottom p-2">Информация о туре</h4>
     <div class="ticket-card">
-      <h2 class="text-center">{{ticket?.name}}</h2>
-      <img src="../assets/img/{{ticket?.img}}">
-      <p class="text-center m-0 p-2">{{ticket?.description}}</p>
+      <h3 class="text-center">{{ticket?.name}}</h3>
+      <img src="../assets/img/{{ticket?.img}}" class="ticket-img">
+      <p class="text-center mb-4 p-2">{{ticket?.description}}</p>
       <div class="ticket-card-footer">
         <button class="btn btn-secondary" routerLink="/tickets/tickets-list">Назад</button>
         <div class="ticket-price">{{ticket?.price}}</div>
       </div>
     </div>
   </div>
+  <div class="w-50  m-2">
+    <h4 class="text-center mb-4 border-bottom p-2">Личная информация</h4>
+    <div class="mt-3 user-info" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="mt-3">
+<!--        <span class="mx-5">Имя</span>-->
+        <ng-container *ngTemplateOutlet="userFieldTitle; context:{titleValue: 'Имя'}"></ng-container>
+        <input type="text"
+               class="mt-3"
+               pInputText
+               formControlName="firstName"/>
+      </div>
+      <div class="mt-3">
+<!--        <span class="mx-5">Фамилия</span>-->
+        <ng-container *ngTemplateOutlet="userFieldTitle; context:{titleValue: 'Фамилия'}"></ng-container>
+        <input type="text"
+               class="mt-3"
+               pInputText
+               formControlName="lastName"/>
+      </div>
+      <div class="mt-3">
+        <span class="mx-5">Номер карты</span>
+        <input type="text"
+               class="mt-3"
+               pInputText
+               formControlName="cardNumber"/>
+      </div>
+      <div class="mt-3">
+        <span class="mx-5">Возраст</span>
+          <p-inputNumber
+               class="mt-3 mb-3"
+               formControlName="age"
+               [showButtons]="true">
+          </p-inputNumber>
+      </div>
+      <div class="mt-3">
+<!--        <span class="mx-5">День рождения</span>-->
+        <ng-container *ngTemplateOutlet="userFieldTitle; context:{titleValue: 'День рождения'}"></ng-container>
+        <p-calendar
+          class="mt-3"
+          formControlName="birthDay"
+          (onSelect)="selectDate($event)">
+        </p-calendar>
+      </div>
+      <div class="mt-3">
+<!--        <span class="mx-5">Гражданство</span>-->
+        <ng-container *ngTemplateOutlet="userFieldTitle; context:{titleValue: 'Гражданство'}"></ng-container>
+        <input type="text"
+               class="mt-3"
+               pInputText
+               formControlName="citizen"/>
+      </div>
+      <div class="mt-5 text-center">
+        <button class="btn-success btn"
+                type="submit"
+                (click)="initTour()"
+                [disabled]="!userForm.valid">
+                Перейти к оформлению
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
+<div class="mt-4">
+  <h4>Похожие туры</h4>
+  <div>
+    <input #ticketSearch [(ngModel)]="ticketSearchValue" type="text" pInputText/>
+  </div>
+
+  <p-carousel [value]="nearestTours">
+<!--    <ng-template pTemplate="header"></ng-template>-->
+    <ng-template let-tour pTemplate="item">
+      {{tour.name}}/{{tour.region.name}}
+      <div class="ticket-img-nearest">
+          <img class="w-100 h-100" src="/assets/img/{{tour.img}}"/>
+      </div>
+    </ng-template>
+  </p-carousel>
+</div>
+
+
+<ng-template #userFieldTitle let-value = "titleValue">
+  <span class="mx-5">{{value}}</span>
+</ng-template>

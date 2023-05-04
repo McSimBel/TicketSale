@@ -15,7 +15,7 @@
          [(ngModel)]="psw"/>
   </div>
 </div>
-<div class="mt-3">
+<div class="mt-3"  *ngIf="showCardNumber">
   <p-checkbox (onChange)="(vipStatusSelected())"
               label="Есть номер карты"
               [(ngModel)]="selectedValue"
@@ -32,17 +32,3 @@
 <div class="mt-4 d-flex justify-content-center">
   <button (click)="onAuth($event)" type="button" class="btn btn-primary">{{authTextButton}}</button>
 </div>
-
-
-
-<!--<p>{{text}}</p>-->
-
-<!--<div *ngFor="let cars of carsArr; let i=index">-->
-<!--{{cars}} {{i}}-->
-<!--</div>-->
-
-<!--<p (click)="clickFunc($event)">Click Me</p>-->
-
-<!--<div *ngIf="showBlock">-->
-<!--  <p>Show me</p>-->
-<!--</div>-->

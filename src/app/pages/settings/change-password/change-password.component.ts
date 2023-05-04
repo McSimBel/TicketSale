@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./change-password.component.scss']
 })
 export class ChangePasswordComponent implements OnInit {
-  public user: IUser;
+  public user: IUser | null;
   psw: string;
   newPsw: string;
   pswRepeat: string;

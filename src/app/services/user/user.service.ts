@@ -5,13 +5,34 @@ import {IUser} from "../../models/users";
   providedIn: 'root'
 })
 export class UserService {
-  private user: IUser;
+  private user: IUser | null;
+  private token: string  | undefined;
   constructor() { }
 
-  getUser(): IUser {
-    return this.user;
+  getUser(): IUser | null {
+      return this.user;
   };
   setUser(user: IUser): void {
     this.user = user;
   };
+  setToken(token: string): void {
+    this.token = token;
+    window.localStorage.setItem('ticketsTour-token', this.token)
+  }
+
+  getToken(): string | void  {
+    if (this.token) {
+      return this.token;
+    } else {
+      const isTokenInStorage = window.localStorage.getItem('ticketsTour-token');
+      if (isTokenInStorage) {
+        return isTokenInStorage;
+      }
+    }
+  }
+  deleteUser(){
+    this.user = null;
+    this.token = '';
+    window.localStorage.setItem('ticketsTour-token', this.token);
+  }
 }

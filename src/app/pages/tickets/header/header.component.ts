@@ -15,22 +15,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   time: Date;
   private timerInterval: number;
   private settingsActive = false;
-  public user: IUser;
+  public user: IUser | null;
 
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.items = [
-      {
-        label: 'Билеты',
-        routerLink: ['tickets-list']
-      },
-      {
-        label: 'Выйти',
-        routerLink: ['/auth']
-      },
-    ];
-    this.user = this.userService.getUser();
+    this.items = this.initMenuItems();
+
+    this.user = <IUser>this.userService.getUser();
 
     this.timerInterval = window.setInterval(() => {
       this.time = new Date();
@@ -55,12 +47,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
       },
       {
         label: 'Настройки',
-        routerLink:['/settings'],
+        routerLink:['settings'],
         visible: this.settingsActive
       },
       {
         label: 'Выйти',
-        routerLink:['/auth']
+        routerLink:['/auth'],
+        command: ( ) => {
+          this.userService.deleteUser()
+        }
       },
 
     ];

@@ -10,6 +10,7 @@ import { StatisticComponent } from './statistic/statistic.component';
 import {FormsModule} from "@angular/forms";
 import {InputTextModule} from "primeng/inputtext";
 import {MessageService} from "primeng/api";
+import {TableModule} from "primeng/table";
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import {MessageService} from "primeng/api";
     CommonModule,
     SettingsRoutingModule,
     TabViewModule,
+    TableModule,
     ToastModule,
     FormsModule,
     InputTextModule

@@ -12,6 +12,9 @@ import { DropdownModule } from 'primeng/dropdown';
 import {FormsModule} from "@angular/forms";
 import { InputTextModule } from 'primeng/inputtext';
 import {BlocksStyleDirective} from "../../directive/blocks-style.directive";
+import {CalendarModule} from "primeng/calendar";
+import {MessageService} from "primeng/api";
+import {ToastModule} from "primeng/toast";
 
 
 @NgModule({
@@ -29,7 +32,11 @@ import {BlocksStyleDirective} from "../../directive/blocks-style.directive";
     MenubarModule,
     DropdownModule,
     InputTextModule,
-    FormsModule
-  ]
+    FormsModule,
+    CalendarModule,
+    ToastModule
+  ],
+  providers: [MessageService]
 })
+
 export class TicketsModule { }

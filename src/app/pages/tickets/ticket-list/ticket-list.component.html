@@ -1,13 +1,18 @@
-<div *ngIf="tickets">
+<div>
   <div class="d-flex justify-content-between align-items-center mb-3">
     <div class="filter">
-      Поиск тура:&nbsp;&nbsp;<input (input)="findTours($event)" type="text" pInputText/>
+      Поиск тура:&nbsp;&nbsp;<input #ticketSearch
+                                    [(ngModel)]="ticketSearchValue"
+                                    type="text"
+                                    pInputText/>
     </div>
-    <div class="count">Выбран тур №&nbsp;{{blockDirective.activeElementIndex+1}}</div>
-    <div class="count">Количество туров:&nbsp;&nbsp;{{tourWrap.childElementCount}}</div>
+    <div class="count" *ngIf="directiveReady">Выбран тур №&nbsp;{{blockDirective.activeElementIndex+1}}</div>
+    <div class="count">Количество туров:&nbsp;&nbsp;{{tickets.length}}</div>
+<!--    <div class="count">Количество туров:&nbsp;&nbsp;{{tourWrap.childElementCount}}</div>-->
   </div>
 
   <div appBlocksStyle
+       *ngIf="ticketsLoad"
        #tourWrap
        #blockDirective='blocksStyle'
        [selector]="'.ticket-item'"
@@ -24,3 +29,21 @@
     </div>
   </div>
 </div>
+
+
+
+<!--новая версия фильтра:-->
+<!--<div class="filter">-->
+<!--  Поиск тура:&nbsp;&nbsp;<input #ticketSearch-->
+<!--                                [(ngModel)]="ticketSearchValue"-->
+<!--                                type="text"-->
+<!--                                pInputText/>-->
+<!--</div>-->
+
+
+<!--<div class="filter">-->
+<!--  Поиск тура:&nbsp;&nbsp;<input (input)="findTours($event)"-->
+<!--                                [(ngModel)]="inputSearch"-->
+<!--                                type="text"-->
+<!--                                pInputText/>-->
+<!--</div>-->

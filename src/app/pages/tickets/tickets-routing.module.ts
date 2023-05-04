@@ -14,10 +14,9 @@ const routes: Routes = [
       path: 'ticket/:id',
       loadChildren: () => import('../ticket-info/ticket-info.module').then(m => m.TicketInfoModule)
     },
-    // {
-    //   path: 'order',
-    //   loadChildren: () => import('../order/order.module').then(m => m.OrderModule)
-    // },
+    { path: 'settings',
+      loadChildren: ()  => import('../settings/settings.module').then(m => m.SettingsModule)
+    },
   ]
   },
 ];
