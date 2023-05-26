@@ -40,6 +40,9 @@ export class TicketListComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.ticketService.ticketUpdateSubject$.subscribe((data) => {
+      this.tickets = data;
+    })
     this.ticketService.getTickets().subscribe(
       (data) => {
         this.tickets = data;
@@ -118,7 +121,7 @@ export class TicketListComponent implements OnInit, AfterViewInit {
   // }
 
   goToTicketInfoPage(item: ITour) {
-    this.router.navigate([`/tickets/ticket/${item.id}`])
+    this.router.navigate([`/tickets/ticket/${item._id}`])
 
     /* если использовать метод for queryParamMap
     надо в tickets-routing.module.ts заменить path: 'ticket/:id' на path: 'ticket'

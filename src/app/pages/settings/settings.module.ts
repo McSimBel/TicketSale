@@ -7,21 +7,24 @@ import {TabViewModule} from "primeng/tabview";
 import {ToastModule} from "primeng/toast";
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { StatisticComponent } from './statistic/statistic.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {InputTextModule} from "primeng/inputtext";
 import {MessageService} from "primeng/api";
 import {TableModule} from "primeng/table";
+import { TourLoaderComponent } from './tour-loader/tour-loader.component';
 
 
 @NgModule({
   declarations: [
     SettingsComponent,
     ChangePasswordComponent,
-    StatisticComponent
+    StatisticComponent,
+    TourLoaderComponent
   ],
   imports: [
     CommonModule,
     SettingsRoutingModule,
+    ReactiveFormsModule,
     TabViewModule,
     TableModule,
     ToastModule,

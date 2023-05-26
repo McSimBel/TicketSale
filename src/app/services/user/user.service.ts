@@ -17,7 +17,10 @@ export class UserService {
   };
   setToken(token: string): void {
     this.token = token;
-    window.localStorage.setItem('ticketsTour-token', this.token)
+  }
+
+  setToStore(token: string): void {
+    window.localStorage.setItem('ticketsTour-token', token)
   }
 
   getToken(): string | void  {

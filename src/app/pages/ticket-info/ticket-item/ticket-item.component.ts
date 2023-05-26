@@ -7,6 +7,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../../services/user/user.service";
 import {TicketService} from "../../../services/ticket/ticket.service";
 import {find, forkJoin, fromEvent, map, pipe, Subscription} from "rxjs";
+import {IOrder} from "../../../models/order";
 
 @Component({
   selector: 'app-ticket-item',
@@ -54,9 +55,10 @@ export class TicketItemComponent implements OnInit, AfterViewInit {
     const queryIdParam = this.route.snapshot.queryParamMap.get('id'); // если использовать вариант с queryParams, см ticket-list.component.ts
 
     const paramValueId = routeIdParam || queryIdParam;
+
     if (paramValueId) {
       const ticketStorage = this.ticketStorage.getStorage();
-      this.ticket = ticketStorage.find((el) => el.id === paramValueId);
+      this.ticket = ticketStorage.find((el) => el._id === paramValueId);
       console.log('this.ticket', this.ticket)
     }
   }
@@ -106,7 +108,15 @@ export class TicketItemComponent implements OnInit, AfterViewInit {
     const userData = this.userForm.getRawValue();
     const postData = {...this.ticket, ...userData};
 
-    this.ticketService.sendTourData(postData).subscribe()
+    const userId = this.userService.getUser()?.id || null;
+    const postObj: IOrder = {
+      age: postData.age,
+      birthDay: postData.birthDay,
+      cardNumber: postData.cardNumber,
+      tourId: postData._id,
+      userId: userId,
+    }
+    this.ticketService.sendTourData(postObj).subscribe()
   }
 
   selectDate(ev: Event): void {}

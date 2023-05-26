@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {INearestTour, ITour, ITourLocation} from "../../models/tours";
 import {UserService} from "../user/user.service";
+import {IOrder} from "../../models/order";
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,8 @@ export class TicketRestService {
               private userService: UserService) { }
 
   getTickets(): Observable<ITour[]> {
-    // this.userService.setToken('user-private-token');
-    return this.http.get<ITour[]>('https://62b9e756ff109cd1dc9dae16.mockapi.io/apiv/v1/tours/');
+    return this.http.get<ITour[]>('http://127.0.0.1:3000/tours/');
+    // return this.http.get<ITour[]>('https://62b9e756ff109cd1dc9dae16.mockapi.io/apiv/v1/tours/');
   }
 
   getRestError(): Observable<any> {
@@ -40,7 +41,14 @@ export class TicketRestService {
     }
   }
 
-  sendTourData(data: any): Observable<any> {
-    return this.http.post('/assets/mocks/', data);
+  sendTourData(data: IOrder): Observable<any> {
+    return this.http.post('http://127.0.0.1:3000/order/', data);
+  }
+
+  getTicketById(id: string): Observable<ITour> {
+    return this.http.get<ITour>('http://127.0.0.1:3000/tours/'+id);
+  }
+  createTour(body: any): Observable<any> {
+    return this.http.post('http://127.0.0.1:3000/tour-item/', body, {headers: {}})
   }
 }

@@ -7,6 +7,7 @@ export interface ITour {
   id: string,
   type: string,
   date: string
+  _id?:string
 }
 
 export interface ITourTypeSelect {

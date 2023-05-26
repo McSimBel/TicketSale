@@ -74,7 +74,8 @@ export class BlocksStyleDirective {
         (this.items[this.index] as HTMLElement).setAttribute('style', 'border: 1px solid red; transform: translateY(-1px); box-shadow: 3px 5px 10px rgba(0,0,0,.3);')
       }
     }
-    this.activeElementIndex = this.index
+    this.activeElementIndex = this.index;
+    this.items[this.index].scrollIntoView({behavior: "smooth", block: "center", inline: "start"});
   }
   initStyle(index: number) {
     this.index = index;
